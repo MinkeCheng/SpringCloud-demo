@@ -1,0 +1,30 @@
+server:
+  port: ${PORT:8761}
+spring:
+  application:
+    name: eureka-service
+  cloud:
+    config:
+      enabled: true
+  security:
+    user:
+      name: root
+      password: 123456
+  zipkin:
+    base-url: http://localhost:9411
+
+eureka:
+  client:
+#    service-url:
+#      defaultZone: ${EUREKA_URL:http://root:root@localhost:8761/eureka/}
+    register-with-eureka: false # 是否注册自己的信息到EurekaServer（如果集群是true），默认是true
+    fetch-registry: false # 是否拉取其它服务的信息（如果集群是true），默认是true
+    registry-fetch-interval-seconds: 5
+  instance:
+  #    hostname: ${spring.application.name}
+  #lease-expiration-duration-in-seconds: 10 # 10秒即过期
+    #lease-renewal-interval-in-seconds: 5 # 5秒一次心跳
+    #instance-id: ${spring.application.name}:${server.port}
+  server:
+    enable-self-preservation: false # 关闭自我保护模式（缺省为打开）
+    eviction-interval-timer-in-ms: 1000 # 扫描失效服务的间隔时间（缺省为60*1000ms）
